@@ -1,27 +1,51 @@
 body{
     margin: 0 auto;
+    width: 100%;
 }
 
 .content{
-    max-width: 1350px;
+    width: 100%;
     margin: 0 auto;
 }
 
 
-
-nav{
-    display: flex;
-    flex-direction: row;
+.header{
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
+/*.header::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: cadetblue;
+}*/
+
+.header-content{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .company-name{
     width: 30%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 900;
-    padding-top: 50px;
     text-align: center;
-    margin-left: -30px;
     font-size: 19px;
+}
+
+.logo-top{
+    z-index: 3;
+}
+.logo-top>a>img{
+    width: 150px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .top-menu{
@@ -29,14 +53,36 @@ nav{
     flex-direction: row;
     list-style: none; 
     margin: 0; 
-    padding-left: 0;
     height: 50px; 
     width: 100%;
     justify-content: center;
-    padding-top: 50px;
-    margin-left: 50px;
     font-size: 23px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.top-menu.active{
+    top: 0;
+    transition: all 0.3s ease 0s;
+}
+
+.top-menu.active.hide{
+    top: -100%;
+    transition: all 0.3s ease 0s;
+}
+
+
+.top-menu-burger.active::before{
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.top-menu-burger.active::after{
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.top-menu-burger.active>span{
+    transform: scale(0);
 }
 
 .top-menu>li>a:hover{
@@ -53,7 +99,6 @@ nav{
     font-weight: 500;
 }
 
-
 .under-menu{
     background-image: url(./img/security.jpg);
     background-size: 100% 100%;
@@ -63,6 +108,7 @@ nav{
     color: cyan;
     position: relative;
     text-align: center;
+    z-index: 1;
 }
 .under-menu>div{
     position: absolute;               
@@ -322,8 +368,8 @@ nav{
 #back-to-top{
     position: fixed;
     z-index: 1000;
-    bottom: 5px;
-    right: 24px;
+    bottom: 30px;
+    right: 40px;
 }
 
 #back-to-top>a:hover{
@@ -346,6 +392,9 @@ nav{
 
 
 @media (max-width: 767px){
+    body.lock{
+       overflow: hidden;
+    }
     .uslugi-container-top, .uslugi-container-middle, .uslugi-container-bottom{
         display: flex;
         flex-direction: column;
@@ -354,5 +403,78 @@ nav{
         width: 70%;
         margin: 0 auto;
     }
-    
+    .header{
+        height: 80px;
+    }
+    .logo-top>a>img{
+        width: 80px;
+        margin-left: 20px;
+    }
+    .top-menu-burger{
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        z-index: 3;
+        margin-right: 40px;
+    }
+    .top-menu-burger::before, .top-menu-burger::after{
+        content: "";
+        background-color: #cf1b1b;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .top-menu-burger::before{
+        top: 0;
+    }
+    .top-menu-burger::after{
+        bottom: 0;
+    }
+    .top-menu-burger>span{
+        position: absolute;
+        background-color:  #cf1b1b;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+
+    }
+    .header{
+        position: fixed;
+        z-index: 3;
+    }
+
+    .header::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: cadetblue;
+        z-index: 3;
+    }
+    .top-menu{
+        position:fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(128, 68, 184);
+        padding: 100px 0 0 0;
+        display: block;
+    }
+
+
+    .top-menu>li{
+        margin: 0 0 20px 20px;
+    }
+    .company-name{
+        display: none;
+    }
+
 }
